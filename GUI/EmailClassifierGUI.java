@@ -1,24 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package GUI;
+
+package emailclassifierinterface;
 
 import java.io.*;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author devon
+ * @author Devon Miller
  */
 public class EmailClassifierGUI extends javax.swing.JFrame {
+    
+    DefaultTableModel model;
 
     /**
      * Creates new form EmailClassifierGUI
+     * @throws java.io.IOException
      */
     public EmailClassifierGUI() throws IOException {
         initComponents();
@@ -27,36 +28,54 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
     
     /**
      *
+     * @throws java.io.FileNotFoundException
      */
     public void getFileInfo() throws FileNotFoundException, IOException
     {
-        File file = new File(getClass().getResource("/resources/MailArchive").getFile());
-        File[] files = file.listFiles();
-        DefaultTableModel model = (DefaultTableModel)Email_Info.getModel();
-        model.setColumnIdentifiers(new String[]{"Sender","Subject","Body"});
-        Object[] row = new Object[3];
+        File folder = new File("./EmailArchive");
+        File[] files = folder.listFiles();
+        model = (DefaultTableModel)Email_Info.getModel();
+        model.setColumnIdentifiers(new String[]{"Sender","Subject","Date & Time","Body","Classification Type","Recipient","File Name"});
+        Object[] row = new Object[7];
         for (int i = 0; i < files.length; i++)
         {
-            BufferedReader br = new BufferedReader(new FileReader(files[i].getName()));
+            BufferedReader br = new BufferedReader(new FileReader("./EmailArchive/" + files[i].getName()));
+            String fileName = files[i].getName();
             
-            int lineNum = 0;
             String st;
             while((st = br.readLine()) != null)
             {
-                row[lineNum] = st;
-                lineNum++;
-                if (lineNum == 2)
+                if (st.substring(0,5).equals("From:"))
+                {
+                    st = st.substring(6,st.length());
+                    row[0] = st;
+                }
+                else if (st.substring(0,8).equals("Subject:"))
+                {
+                    st = st.substring(9,st.length());
+                    row[1] = st;
+                }
+                else if (st.substring(0,5).equals("Date:"))
+                {
+                    st = st.substring(6,st.length());
+                    row[2] = st;
+                }
+                else if (!st.substring(0,13).equals("Thread-Topic:") && 
+                        !st.substring(0,13).equals("Thread-Index:") &&
+                        !st.substring(0,11).equals("Message-ID:"))
                 {
                     break;
                 }
             }
             
             StringBuilder body = new StringBuilder();
+            body.append(st + " ");
             while((st = br.readLine()) != null)
             {
                 body.append(st + " ");
             }
-            row[lineNum] = body;
+            row[3] = body;
+            row[6] = fileName;
             
             model.addRow(row);
         }
@@ -74,6 +93,9 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Email_Info = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,33 +109,83 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Email_Info);
 
-        jButton1.setText("DELETE");
+        jButton1.setText("DELETE EMAIL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
+        jTextPane1.setText("SEARCH BY STRING:");
+        jTextPane1.setToolTipText("");
+        jScrollPane2.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) Email_Info.getModel();
+        int ColumnIndex = 6;
+        int SelectedRowIndex = Email_Info.getSelectedRow();
+        String fileName = Email_Info.getModel().getValueAt(SelectedRowIndex, ColumnIndex).toString();
+        model.removeRow(SelectedRowIndex);
+        removeFile(fileName);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        String query = jTextField1.getText();
+        filter(query);
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -158,5 +230,21 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
     private javax.swing.JTable Email_Info;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void removeFile(String fileName) {
+        File file = new File("./EmailArchive/" + fileName);
+        file.delete();
+    }
+    
+    private void filter(String query)
+    {
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(model);
+        Email_Info.setRowSorter(tr);
+        
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
 }
