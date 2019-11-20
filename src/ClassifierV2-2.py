@@ -41,7 +41,7 @@ import sklearn
 with open('text_classifier_100', 'rb') as Mymodel:
     model = pickle.load(Mymodel)
 
-X_One = ['What is the GPA I need to be a grad student at NMSU?']
+X_One = ['Who do I get in touch to become a TA']
 #Using old vect with fitted data instead of a new fit transform
 #vect = CountVectorizer()
 X_vected = vect.transform(X_One)
@@ -50,7 +50,7 @@ answer1 = model.predict(X_vected)
 print('Catergory for the first question is:')
 print(answer1[0])
 
-X_Two = ['How does one go about becoming a TA?']
+X_Two = ['What does one need in order to become RA?']
 X2_vected = vect.transform(X_Two)
 answer2 = model.predict(X2_vected)
 
