@@ -29,6 +29,11 @@ print(theScore)
 with open('text_classifier_100', 'wb') as picklefile:
     pickle.dump(classifier,picklefile)
 
+
+    
+    
+    
+    
 import pickle
 import sklearn
 
@@ -40,10 +45,18 @@ X_One = ['What is the GPA I need to be a grad student at NMSU?']
 #Using old vect with fitted data instead of a new fit transform
 #vect = CountVectorizer()
 X_vected = vect.transform(X_One)
+answer1 = model.predict(X_vected)
 
-y_new = model.predict(X_vected)
+print('Catergory for the first question is:')
+print(answer1[0])
 
-print()
+X_Two = ['How does one go about becoming a TA?']
+X2_vected = vect.transform(X_Two)
+answer2 = model.predict(X2_vected)
+
+print('Catergory for the second question is:')
+print(answer2[0])
+
 
 
 #for i in range(len(X)):
