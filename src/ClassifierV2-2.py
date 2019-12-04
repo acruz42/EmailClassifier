@@ -1,3 +1,4 @@
+#This is the file that creates the model out of the dataset.
 import pandas as pd
 import io
 import numpy as np
@@ -8,12 +9,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle
 
+#Import the dataset from the google doc as a csv
 from google.colab import files
 uploaded = files.upload()
 #dataset = pd.read_csv('C:\FinalFileLocation.csv')
 
 dataset = pd.read_csv(io.BytesIO(uploaded['EmailQ3.csv']))
 
+#Split the dataset into questions(X) and categories(Y). The dataset is then trained using the #RandomForestClassifier
 X = dataset.iloc[:,0].values
 y = dataset.iloc[:,1].values
 vect = CountVectorizer()
@@ -33,7 +36,7 @@ with open('text_classifier_100', 'wb') as picklefile:
     
     
     
-    
+#Test the model and get the probabilities.    
 import pickle
 import sklearn
 

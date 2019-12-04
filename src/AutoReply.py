@@ -1,11 +1,15 @@
+#This is the script that composes and sends the reply email based on the output of the clasifier.
+
 import smtplib
 import sys
 
+#Establish contact with the perl script and fetch the MIME of the original email
 port = 25
 
 text = sys.argv[1]
 classification = 6
 
+#Parse the original sender of the email out of the MIME file so we can send the reply
 receiver = ""
 condition = False
 for c in text:
@@ -19,6 +23,8 @@ for c in text:
 
 sender = "testgr@cs.nmsu.edu"
 subject = "Email Classifier Automated Reply"
+
+#Compose the message. The message is stored as a string in text.
 
 text = "\nThis is an automated reply from testgr@cs.nmsu.edu.\n\n"
 
@@ -113,6 +119,7 @@ text = text + "\n\nIf your question wasn't answered to your satisfaction please 
 
 message = 'Subject: {}\n\n{}'.format(subject, text)
 
+#Send the composed message
 with smtplib.SMTP("smtp.cs.nmsu.edu", port) as server:
 	server.login("testgr", "Dunedain03\\")
 	server.sendmail(sender, receiver, message)
