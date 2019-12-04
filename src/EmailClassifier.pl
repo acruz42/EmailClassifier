@@ -1,8 +1,9 @@
-#This is the master control script for the entire project. When the testgr account recieves an email this
-#file is called and runs the other nessecary files. It also contains most of the code needed for creating
-#the archive files.
-
 #!/usr/bin/perl
+
+#This is the master control script for the entire project. When the testgr account recieves an email 
+#the email server passes the email to this script via the .forward file. This script then runs the files 
+#that are directly related to the email classification. It also contains most of the code needed for 
+#creating the archive files.
 
 $count = 0;
 $myBody = "";
@@ -56,11 +57,9 @@ foreach my $line(<>) {
 }
 
 #Call the archiver
-system("/usr/bin/python3 /home/groups3/testgr/MergerTest/email_archiver.py \"$archive\" 2>> /home/groups3/testgr/MergerTest/Debug/archiveErrors.txt");
+system("/usr/bin/python3 /home/groups3/testgr/MergerTest/EmailArchiver.py \"$archive\" 2>> /home/groups3/testgr/MergerTest/Debug/archiveErrors.txt");
 
-#Call the classifier
-system("/usr/bin/python3 /home/groups3/testgr/MergerTest/classification.py \"$myBody\" 2>> /home/groups3/testgr/MergerTest/Debug/nlpErrors.txt");
+#Call the classifier and auto reply script
+system("/usr/bin/python3 /home/groups3/testgr/MergerTest/ClassifierSender.py \"$myBody\" 2>> /home/groups3/testgr/MergerTest/Debug/nlpErrors.txt");
 
-#Call the auto reply script
-system("/usr/bin/python3 /home/groups3/testgr/MergerTest/autoReply.py 2>> /home/groups3/testgr/MergerTest/Debug/replyErrors.txt");
 
