@@ -1,4 +1,11 @@
-
+#-------------------------------------------------------------------------------------------------
+#This is the script that composes the reply email based on the senders email. The email is split
+#into sentences and lemmatized using the stanfordnlp library. The lemmatized sentences are then
+#fed to the model created in ModelConstructor.py which determines how closely each sentence
+#matches our training data. If a sentences matches the training data closely enough the answer to
+#the question detected is added to the response email. Once the original email has been parsed
+#completely the response email is sent as a reply to the original email.
+#-------------------------------------------------------------------------------------------------
 
 import pickle
 import smtplib
@@ -16,6 +23,7 @@ f.write("SUCCESS\n")
 f.close()
 """
 
+#Get nessecary files and instantiate the model and nlp pipeline
 features_file = "/home/groups3/testgr/MergerTest/Models/features.pkl"
 model_file = "/home/groups3/testgr/MergerTest/Models/text_classifier_main_model"
 
@@ -26,8 +34,10 @@ doc = nlp(sys.argv[4])
 with open(model_file, 'rb') as Mymodel:
     model = pickle.load(Mymodel)
 
+
 vect = CountVectorizer(decode_error="replace",vocabulary=pickle.load(open(features_file, "rb")))
 
+#Parse and lemmatize the email body and put the lemmatized sentences into list X_One
 f = open("/home/groups3/testgr/MergerTest/Debug/nlpOutput.txt","w+")
 X_One = []
 output = ""
@@ -48,10 +58,16 @@ f.close()
 
 #X_One = ['Who is in charge of Teaching Assistants?','I was wondering how I should go about becoming an RA.','How is your evening?','Hope everything is going okay.']
 #Using old vect with fitted data instead of a new fit transform
+
+#Use the model to predict the classification and determine the certainty of classification of 
+#each sentence in X_One
 X_vected = vect.transform(X_One)
 classifications = model.predict(X_vected)
 
 all_probs = model.predict_proba(X_vected)
+
+#Find all the sentences with a classification probability higher than 85% and add the questions
+#classification number to the true_class list
 true_probs = []
 true_class = []
 max_classification = 0
