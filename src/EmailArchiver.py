@@ -15,7 +15,7 @@ i = 1
 savedFile = "Email#" + str(i) + ".txt"
 checked = False
 
-while checked = False:
+while checked is False:
 	try:
 		fil = open("/home/groups3/testgr/MergerTest/EmailArchive/"+savedFile,"x")
 		checked = True
