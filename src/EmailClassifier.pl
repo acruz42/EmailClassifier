@@ -1,9 +1,11 @@
 #!/usr/bin/perl
 
-#This is the master control script for the entire project. When the testgr account recieves an email 
-#the email server passes the email to this script via the .forward file. This script then runs the files 
-#that are directly related to the email classification. It also contains most of the code needed for 
-#creating the archive files.
+#-------------------------------------------------------------------------------------------------
+#This is the master control script for the entire project. When the testgr account recieves an 
+#email the email server passes the email to this script via the .forward file. This script then 
+#runs the files that are directly related to the email classification. It also contains most of 
+#the code needed for creating the archive files.
+#-------------------------------------------------------------------------------------------------
 
 $count = 0;
 $myBody = "";

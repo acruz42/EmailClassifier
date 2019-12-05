@@ -1,4 +1,8 @@
-#This is the file that creates the model out of the dataset.
+#-------------------------------------------------------------------------------------------------
+#This is the file that creates the model out of the dataset. The dataset is imported from the
+#google doc as a .csv file. The csv is then fed to the RandomForestClassifier which creates the 
+#training model.
+#-------------------------------------------------------------------------------------------------
 import pandas as pd
 import io
 import numpy as np
