@@ -15,6 +15,9 @@ $sender = "";
 $process_messageID = 0;
 $bypassCondition = 0;
 
+$archive .= "Classification Type: N/A\n";
+$archive .= "Received: No\n";
+
 
 foreach my $line(<>) {
 	#Get the date from the MIME and add it to the archive
