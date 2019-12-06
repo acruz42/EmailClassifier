@@ -1,0 +1,10 @@
+Q: "What are the basic to do items after I come to NMSU?"
+
+A: The basic TODOs are:
+
+	1. Attend the orientation session organized by graduate school. If you do not know the orientation information, please contact gradinfo@nmsu.edu.
+	2. Read this FAQ page carefully.
+	3. Please read the <a href="https://catalogs.nmsu.edu/nmsu/arts-sciences/computer-science/">NMSU catalog</a>. In particular, under the “Degree” tab, please find the degree requirement for your program.
+	4. Make an appointment with the department graduate advisor to discuss your study plan. Before talking with the department graduate advisor, please first (i) read this FAQ page carefully and (ii) read your degree requirement in the catalog carefully. When you talk with the department graduate advisor, you will know your deficiency courses. You will also discuss your options of courses in the first two semesters.
+	5. Go to see Ivan or Mark and get a CS email address with cs.nmsu.edu and get an access code to the graduate student lab. The information of Ivan and Mark can be found from <a href="https://www.cs.nmsu.edu/wp/people/staff/">https://www.cs.nmsu.edu/wp/people/staff/</a>.
+	6. Attend the department’s graduate student orientation which is organized by the Computer Science Graduate Student Organization (CSGSO, gradrep@cs.nmsu.edu, <a href="https://www.cs.nmsu.edu/~gradrep/>www.cs.nmsu.edu/~gradrep/</a>).

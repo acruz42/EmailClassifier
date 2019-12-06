@@ -1,0 +1,3 @@
+Q: "I get a course ID. How do I know what course it is and what topics does it cover?"
+
+A: Please read the <a href="https://catalogs.nmsu.edu/nmsu/arts-sciences/computer-science/">NMSU catalog</a> and find the information in the “Courses” tab.

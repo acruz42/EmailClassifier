@@ -1,0 +1,3 @@
+Q: "What are the starting dates of the Spring, Summer, and Fall semesters?"
+
+A: Please find the university calendar from <a href="https://academiccalendar.nmsu.edu">https://academiccalendar.nmsu.edu</a>

@@ -1,0 +1,12 @@
+Q: "What is the procedure to graduate for coursework only option?"
+
+A: The steps are:
+
+	1. Fill in the “program of study form”, which can be downloaded from <a href"https://gradschool.nmsu.edu/graduate-forms/">https://gradschool.nmsu.edu/graduate-forms/</a>, and denote that it is coursework only.
+	2. Ask the department graduate advisor, the department head, and the college dean to sign the form.
+	3. Send the signed program of study form to graduate school.
+	4. Form a committee to have a final exam. The committee should consist of two CS faculty members, where one faculty member will serve as committee chair and the other one is a regular committee member, and one external (non-CS) faculty member, who will serve as dean’s representative. The student chooses the committee.
+	5. Decide the time to have the final exam by coordinating with the committee members.
+	6. The student reserves a room to have the final exam by working with the CS admin.
+	7. Fill in the “Masters Final Examination Form”, which can be downloaded from <a href="https://gradschool.nmsu.edu/graduate-forms/">https://gradschool.nmsu.edu/graduate-forms/</a>, and have it signed properly. Send this form to graduate school.
+	8. Final oral exam. The exam is generally two hours or until the committee feels it is sufficient to decide. Note that the exam covers the four areas (rubrics can be found from Page two of <a href="https://www.cs.nmsu.edu/wp/wp-content/uploads/2019/10/gradAssessmentForm2019.pdf>www.cs.nmsu.edu/wp/wp-content/uploads/2019/10/gradAssessmentForm2019.pdf</a>). You will be asked questions on one course for each category.

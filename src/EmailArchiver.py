@@ -17,14 +17,14 @@ checked = False
 
 while checked is False:
 	try:
-		fil = open("/home/groups3/testgr/MergerTest/EmailArchive/"+savedFile,"x")
+		fil = open("/home/groups3/testgr/EmailClassifier/src/EmailArchive/"+savedFile,"x")
 		checked = True
 	except:
 		i = i + 1
 		savedFile = "Email#" + str(i) + ".txt"
 
 #Write the archive content generated in the perl script to the file created in the previous step
-fil = open("/home/groups3/testgr/MergerTest/EmailArchive/"+savedFile,"w")
+fil = open("/home/groups3/testgr/EmailClassifier/src/EmailArchive/"+savedFile,"w")
 fil.write(sys.argv[1])
 fil.close()
 

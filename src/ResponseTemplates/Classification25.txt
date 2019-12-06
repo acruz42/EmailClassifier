@@ -1,0 +1,3 @@
+Q: "How can I contact you?"
+
+A: If you have any other questions when you apply for our graduate program (Master’s or PhD), please send emails to gradcs@cs.nmsu.edu

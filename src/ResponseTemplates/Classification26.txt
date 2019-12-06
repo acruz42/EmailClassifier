@@ -1,0 +1,3 @@
+Q: "I was admitted to your graduate program. However, I need to change my enrollment semester. What should I do?"
+
+A: There is a change of admission semester form which can be found on the graduate school website, < a href="https://gradschool.nmsu.edu/graduate-forms/">https://gradschool.nmsu.edu/graduate-forms/</a>. You need to complete the form and send it to gradcs@cs.nmsu.edu. The department will process it and forward it to Graduate School. The Graduate School will update your enrollment semester. When it has gone through, you will receive an updated admission letter indicating the new semester.

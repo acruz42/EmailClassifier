@@ -1,0 +1,9 @@
+Q: How can I get Teaching Assistantship (TA)?
+
+A: If you are a newly admitted student and you are not given any TAship before your arrive, you miss the deadline to apply for TA in your first semester. However, you can get TA in other semesters. The details of applying for TA can be found from <a href="https://www.cs.nmsu.edu/wp/student-information/grad-students/graduate-financial-aid/">www.cs.nmsu.edu/wp/student-information/grad-students/graduate-financial-aid/</a>
+
+The procedure of applying for TAs:
+
+     1. New students send an email to gradcs at cs dot nmsu dot edu to denote that they want to apply for teaching assistantship.
+     2. Deadline to send the TA application email: (1) mid of November for students that will start their first semester at CS in the coming Spring semester and (2) mid of April for students who will start their first semester at CS in the coming Fall semester.
+     3. Decisions about TAs to new students are generally made at (1) the end of November for students that will start their first semester at CS in the coming Spring semester and (2) the end of April for students who will start their first semester at CS in the coming Fall semester.

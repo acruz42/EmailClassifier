@@ -1,0 +1,3 @@
+Q: "Who is the current department graduate advisor?"
+
+A: The current department graduate advisor is Dr. Huiping Cao (hcao@cs.nmsu.edu).

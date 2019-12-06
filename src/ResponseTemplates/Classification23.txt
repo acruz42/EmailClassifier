@@ -1,0 +1,3 @@
+Q: "How many years/semesters are needed to finish my degree?"
+
+A: The degree requirements can be found from <ahref="https://catalogs.nmsu.edu/nmsu/arts-sciences/computer-science/#degreestext">https://catalogs.nmsu.edu/nmsu/arts-sciences/computer-science/#degreestext</a>. To get a degree, you need to finish the required courses and the total number of credits. Thus, the time depends on you. For example, the Master’s in Computer Science degree requires 33 credits. If you take 9 credits per semester, then you will need at least 4 semesters to finish your degree. If you need to take English courses or other deficiency courses, the time will be longer.
