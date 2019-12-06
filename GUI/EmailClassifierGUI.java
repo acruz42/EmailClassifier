@@ -35,7 +35,7 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
         File folder = new File("./EmailArchive");
         File[] files = folder.listFiles();
         model = (DefaultTableModel)Email_Info.getModel();
-        model.setColumnIdentifiers(new String[]{"Sender","Subject","Date & Time","Body","Classification Type","Recipient","File Name"});
+        model.setColumnIdentifiers(new String[]{"Sender","Subject","Date & Time","Body","Classification Type","Received","File Name"});
         Object[] row = new Object[7];
         for (int i = 0; i < files.length; i++)
         {
@@ -45,31 +45,42 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
             String st;
             while((st = br.readLine()) != null)
             {
-                if (st.substring(0,5).equals("From:"))
-                {
-                    st = st.substring(6,st.length());
-                    row[0] = st;
-                }
-                else if (st.substring(0,8).equals("Subject:"))
-                {
-                    st = st.substring(9,st.length());
-                    row[1] = st;
-                }
-                else if (st.substring(0,5).equals("Date:"))
-                {
-                    st = st.substring(6,st.length());
-                    row[2] = st;
-                }
-                else if (!st.substring(0,13).equals("Thread-Topic:") && 
-                        !st.substring(0,13).equals("Thread-Index:") &&
-                        !st.substring(0,11).equals("Message-ID:"))
-                {
-                    break;
+                try {
+                    if (st.substring(0,5).equals("From:"))
+                    {
+                        st = st.substring(6,st.length());
+                        row[0] = st;
+                    }
+                    else if (st.substring(0,5).equals("Date:"))
+                    {
+                        st = st.substring(6,st.length());
+                        row[2] = st;
+                    }
+                    else if (st.substring(0,5).equals("Body:"))
+                    {
+                        break;
+                    }
+                    else if (st.substring(0,8).equals("Subject:"))
+                    {
+                        st = st.substring(9,st.length());
+                        row[1] = st;
+                    }
+                    else if (st.substring(0,9).equals("Received:"))
+                    {
+                        st = st.substring(10,st.length());
+                        row[5] = st;
+                    }
+                    else if (st.substring(0,20).equals("Classification Type:"))
+                    {
+                        st = st.substring(21,st.length());
+                        row[4] = st;
+                    }
+                } catch (StringIndexOutOfBoundsException ex) {
+                    continue;
                 }
             }
             
             StringBuilder body = new StringBuilder();
-            body.append(st + " ");
             while((st = br.readLine()) != null)
             {
                 body.append(st + " ");
@@ -92,8 +103,8 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Email_Info = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        DeleteButton = new javax.swing.JButton();
+        SearchField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
 
@@ -109,21 +120,21 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Email_Info);
 
-        jButton1.setText("DELETE EMAIL");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        DeleteButton.setText("DELETE EMAIL");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                DeleteButtonActionPerformed(evt);
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        SearchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                SearchFieldActionPerformed(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        SearchField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField1KeyReleased(evt);
+                SearchFieldKeyReleased(evt);
             }
         });
 
@@ -137,11 +148,11 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -157,8 +168,8 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addComponent(SearchField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -169,23 +180,26 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         DefaultTableModel model = (DefaultTableModel) Email_Info.getModel();
         int ColumnIndex = 6;
-        int SelectedRowIndex = Email_Info.getSelectedRow();
-        String fileName = Email_Info.getModel().getValueAt(SelectedRowIndex, ColumnIndex).toString();
-        model.removeRow(SelectedRowIndex);
-        removeFile(fileName);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int[] SelectedRows = Email_Info.getSelectedRows();
+        for (int i = 0; i < SelectedRows.length; i++) {
+            int SelectedRowIndex = Email_Info.getSelectedRow();
+            String fileName = Email_Info.getModel().getValueAt(SelectedRowIndex, ColumnIndex).toString();
+            model.removeRow(SelectedRowIndex);
+            removeFile(fileName);
+        }
+    }//GEN-LAST:event_DeleteButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void SearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_SearchFieldActionPerformed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        String query = jTextField1.getText();
+    private void SearchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchFieldKeyReleased
+        String query = SearchField.getText();
         filter(query);
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }//GEN-LAST:event_SearchFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -227,11 +241,11 @@ public class EmailClassifierGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteButton;
     private javax.swing.JTable Email_Info;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField SearchField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 
