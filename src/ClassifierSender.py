@@ -10,6 +10,8 @@
 username = "testgr"
 password = "Dunedain03\\"
 
+sourcePath = "/home/groups3/testgr/EmailClassifier/"
+
 import pickle
 import smtplib
 import poplib
@@ -23,8 +25,8 @@ from email.mime.text import MIMEText
 classification = 0
 
 #Get nessecary files and instantiate the model and nlp pipeline
-features_file = "/home/groups3/testgr/EmailClassifier/src/Models/features.pkl"
-model_file = "/home/groups3/testgr/EmailClassifier/src/Models/text_classifier_100"
+features_file = sourcePath + "src/Models/features.pkl"
+model_file = sourcePath + "src/Models/text_classifier"
 
 # stanfordnlp.download('en', force=True)
 nlp = stanfordnlp.Pipeline(lang='en')
@@ -67,18 +69,19 @@ i = 0
 for probs in all_probs:
     index = classifications[i]
     true_probs.append(probs[index - 1])
-    if probs[index - 1] >= .85:
+    if probs[index - 1] >= .80:
         true_class.append(classifications[i])
     i = i + 1
 
 max_prob = true_probs[0]
-max_classification = classifications[0]
 for i in range(1, len(true_probs)):
     if true_probs[i] > max_prob:
         max_prob = true_probs[i]
-        max_classification = classifications[i]
 
-	
+reply = False
+if max_prob > .80:
+	reply = True 
+
 #Establish contact with the perl script and fetch the MIME of the original email
 port = 25
 
@@ -104,162 +107,171 @@ subject = "Re: " + originalSubject
 #Compose the message. The message is stored as a string list joined at the end.
 
 text = []
-text.append("<pre>\nThis is an automated reply from testgr@cs.nmsu.edu.\n\nWe've attempted to automatically identify your questions, and we got these results:\n\n")
+text.append("<pre>\nThis is an automated reply from " + username + "@cs.nmsu.edu.\n\n")
+
+if reply:
+	text.append("We've attempted to automatically identify your questions, and we got these results:\n\n")
 
 for classification in true_class:
     if classification == 1:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification1.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification1.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 2:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification2.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification2.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 3:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification3.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification3.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 4:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification4.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification4.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 5:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification5.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification5.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 6:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification6.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification6.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 7:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification7.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification7.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 8:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification8.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification8.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 9:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification9.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification9.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 10:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification10.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification10.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 11:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification11.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification11.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 12:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification12.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification12.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 13:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification13.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification13.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 14:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification14.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification14.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 15:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification15.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification15.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 16:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification16.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification16.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 17:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification17.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification17.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 18:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification18.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification18.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 19:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification19.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification19.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 20:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification20.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification20.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 21:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification21.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification21.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 22:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification22.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification22.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 23:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification23.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification23.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 24:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification24.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification24.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 25:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification25.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification25.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 26:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification26.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification26.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 27:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification27.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification27.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 28:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification28.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification28.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 29:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification29.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification29.txt","r")
         for line in f:
             text.append(line)
 
     elif classification == 30:
-        f = open("/home/groups3/testgr/EmailClassifier/src/ResponseTemplates/Classification30.txt","r")
+        f = open(sourcePath + "src/ResponseTemplates/Classification30.txt","r")
         for line in f:
             text.append(line)
 
     text.append("\n\n")
 
-text.append("\nIf your questions weren't answered to your satisfaction, please reply to this email with your inquiry and include the following line at the beginning of your email:\n--THIS DID NOT ANSWER MY QUESTIONS--\nThe graduate advisor will get back to you soon.\n\nIf your questions were answered to your satisfaction, please reply to this email with the string:\n--MY QUESTIONS WERE ANSWERED--\n</pre>")
+if reply:
+	text.append("If your questions weren't answered to your satisfaction, please send a new email with your inquiry and include the following line at the beginning of your email:\n--THIS DID NOT ANSWER MY QUESTIONS--\nThe graduate advisor will get back to you soon.\n\n")
+
+else:
+	text.append("We have received your email and will reply to you soon.\n\n")
+
+text.append("Please check our FAQ pages (<a href=\"https://www.cs.nmsu.edu/wp/future-students/prospective-graduates/#faq\">https://www.cs.nmsu.edu/wp/future-students/prospective-graduates/#faq</a>, <a href=\"https://www.cs.nmsu.edu/wp/student-information/grad-students/graduate-student-faq/\">https://www.cs.nmsu.edu/wp/student-information/grad-students/graduate-student-faq/</a>) for more information.\n</pre>")
 
 txt = ''.join(text)
 
@@ -274,8 +286,7 @@ msg['References'] = messageID
 text1 = msg.as_string()
 
 #message = 'Subject: {}\nIn-Reply-To: {}\nReferences: {}\n\n{}'.format(subject, messageID, messageID, text)
-if max_prob >= .85:
-	with smtplib.SMTP("smtp.cs.nmsu.edu", port) as server:
-		server.login(username, password)
-		server.sendmail(sender, receiver, msg.as_string())
-		server.quit()
+with smtplib.SMTP("smtp.cs.nmsu.edu", port) as server:
+	server.login(username, password)
+	server.sendmail(sender, receiver, msg.as_string())
+	server.quit()

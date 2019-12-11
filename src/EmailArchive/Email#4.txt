@@ -1,12 +1,13 @@
-From: Adrian Cruz <adorian@nmsu.edu>
-Subject: test make sure is sent
-Thread-Topic: test make sure is sent
-Thread-Index: AQHVq+PrcqNFSQXDu0mi1y6IrybbEA==
-Date: Fri, 6 Dec 2019 03:22:09 +0000
-Message-ID: <CY4PR0101MB3110533BDD3E96F1D2C5C435DB5F0@CY4PR0101MB3110.prod.exchangelabs.com>
+From: Devon Miller <millerd@nmsu.edu>
+Subject: Test
+Thread-Topic: Test
+Thread-Index: AQHVrFPlCkbzHDRRME2FVTYLoXterQ==
+Date: Fri, 6 Dec 2019 16:40:53 +0000
+Message-ID: <DM6PR01MB4603041049B36C3CAB672F0DD25F0@DM6PR01MB4603.prod.exchangelabs.com>
 Body:
-Who is the current graduate advisor?
+Hello testgr,
 
-How do I become a Teaching Assistant?
+How is your morning? Hope you're okay.
 
+Who is the graduate advisor?
 

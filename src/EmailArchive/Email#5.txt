@@ -1,12 +1,11 @@
-From: Adrian Cruz <adorian@nmsu.edu>
-Subject: no subject
-Thread-Topic: no subject
-Thread-Index: AQHVq+Un8knVYu+280Ow8+hPbG/wxw==
-Date: Fri, 6 Dec 2019 03:28:19 +0000
-Message-ID: <CY4PR0101MB3110B13BACFF085416763A44DB5F0@CY4PR0101MB3110.prod.exchangelabs.com>
+From: Devon Miller <millerd@nmsu.edu>
+Subject: test
+Thread-Topic: test
+Thread-Index: AQHVrFQnANJaFOlWqUCTOj6/kHcOiA==
+Date: Fri, 6 Dec 2019 16:52:56 +0000
+Message-ID: <DM6PR01MB46030BFC0EFEA81E86BCC491D25F0@DM6PR01MB4603.prod.exchangelabs.com>
 Body:
-Who is the current graduate advisor?
+How do I become a teaching assistant?
 
-How do I become a Teaching Assistant?
-
+Also, who is the graduate advisor?
 
