@@ -1,9 +1,0 @@
-From: Devon Miller <millerd@nmsu.edu>
-Subject: test
-Thread-Topic: test
-Thread-Index: AQHVsHI6d/x5LfqXIk+IN83b15qa9Q==
-Date: Wed, 11 Dec 2019 22:27:52 +0000
-Message-ID: <DM6PR01MB4603095E368D2EDF6192BB8BD25A0@DM6PR01MB4603.prod.exchangelabs.com>
-Body:
-How is your morning?
-

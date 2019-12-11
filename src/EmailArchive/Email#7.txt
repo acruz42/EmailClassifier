@@ -1,9 +1,0 @@
-From: Devon Miller <millerd@nmsu.edu>
-Subject: test
-Thread-Topic: test
-Thread-Index: AQHVsHHWzPtuUfBEj0SVLF22oDKxQA==
-Date: Wed, 11 Dec 2019 22:25:04 +0000
-Message-ID: <DM6PR01MB460393CCA9562D5F75E87A80D25A0@DM6PR01MB4603.prod.exchangelabs.com>
-Body:
-Who is the graduate advisor?
-
