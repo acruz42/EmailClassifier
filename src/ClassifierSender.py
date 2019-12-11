@@ -7,8 +7,8 @@
 #completely the response email is sent as a reply to the original email.
 #-------------------------------------------------------------------------------------------------
 
-username = "testgr"
-password = "Dunedain03\\"
+username = #Insert Username here
+password = #Insert Password Here
 
 sourcePath = "/home/groups3/testgr/EmailClassifier/"
 
